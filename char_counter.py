@@ -11,6 +11,10 @@ class CharCounter(sublime_plugin.ViewEventListener):
 		self.marker = settings.get('marker')
 		self.char_limit = settings.get('char_limit')
 		self.remove_newlines = settings.get('remove_newlines')
+		self.over_color = settings.get('over_color')
+		self.under_color = settings.get('under_color')
+		self.label = settings.get('label')
+		
 		self.update()
 
 	@classmethod
@@ -47,10 +51,11 @@ class CharCounter(sublime_plugin.ViewEventListener):
 			style = ('<style>a{text-decoration:none;color:'
 				+ str(color)
 				+ '}#offset{color:'
-				+ ('#f00'if count>limit else '#0f0') 
+				+ (self.over_color if count>limit else self.under_color) 
 				+ '}</style>')
 			
-			text = ('<a href=copy>Char count: '
+			text = ('<a href=copy>'
+				+ self.label
 				+	str(count)
 				+ ' (<span id="offset">'
 				+ ('+' if diff > 0 else '' if diff == 0 else '-')
@@ -61,11 +66,11 @@ class CharCounter(sublime_plugin.ViewEventListener):
 				sublime.Region(msg_start),
 				style + text,
 				sublime.LAYOUT_BLOCK,
-				lambda href: self.on_click(code)))
+				lambda href: self.set_clipboard(code)))
 
 		self.phantom_set.update(phantoms)
 
-	def on_click(self, code):
+	def set_clipboard(self, code):
 		print('Copied!')
 		sublime.set_clipboard(code)
 
