@@ -14,18 +14,19 @@ class CharCounter(sublime_plugin.ViewEventListener):
 		self.over_color = settings.get('over_color')
 		self.under_color = settings.get('under_color')
 		self.label = settings.get('label')
-		
+		self.languages = settings.get('languages')
+
 		self.update()
 
 	@classmethod
 	def is_applicable(cls, settings):
 		syntax = settings.get('syntax')
-		return 'JavaScript' in syntax
+		return any(language in syntax for language in self.languages)
 
 	def update(self):
 		phantoms = []
 		
-		marker_region = self.view.find(self.marker,0)
+		marker_region = self.view.find(self.marker, 0)
 		
 		if marker_region.a > 0:
 			code_region = self.view.line(marker_region.a)
@@ -33,13 +34,13 @@ class CharCounter(sublime_plugin.ViewEventListener):
 			msg_start = code_region.a
 
 			code = self.view.substr(sublime.Region(0,msg_start))
-			code = code.replace(' ','').replace('\t','')
+			code = code.replace(' ', '').replace('\t', '')
 
 			if self.remove_newlines:
-				code = code.replace('\n','')
+				code = code.replace('\n', '')
 
 			# do not remove whitespace from comment
-			comment = self.view.substr(sublime.Region(msg_start,code_region.b)).strip()
+			comment = self.view.substr(sublime.Region(msg_start, code_region.b)).strip()
 			code += comment
 
 			count = len(code)
@@ -51,7 +52,7 @@ class CharCounter(sublime_plugin.ViewEventListener):
 			style = ('<style>a{text-decoration:none;color:'
 				+ str(color)
 				+ '}#offset{color:'
-				+ (self.over_color if count>limit else self.under_color) 
+				+ (self.over_color if count > limit else self.under_color) 
 				+ '}</style>')
 			
 			text = ('<a href=copy>'

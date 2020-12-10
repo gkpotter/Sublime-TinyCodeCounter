@@ -4,5 +4,6 @@
     "remove_newlines": true,
     "over_color":"#F00",
     "under_color": "#0F0",
-    "label": "Char count: "
+    "label": "Char count: ",
+    "languages": ["JavaScript"]
 }
