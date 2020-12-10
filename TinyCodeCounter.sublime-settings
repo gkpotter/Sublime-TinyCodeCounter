@@ -3,7 +3,8 @@
     	"#tinycode",
     	"#p5t",
     	"#p5js",
-    	"#つぶやきProcessing"],
+    	"#つぶやきProcessing"
+    ],
   	"char_limit": 280,
     "remove_newlines": true,
     "label": "Char count: ",
