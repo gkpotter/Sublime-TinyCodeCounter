@@ -1,0 +1,15 @@
+{
+    "markers": [
+    	"#tinycode",
+    	"#p5t",
+    	"#p5js",
+    	"#つぶやきProcessing"],
+  	"char_limit": 280,
+    "remove_newlines": true,
+    "label": "Char count: ",
+    "languages": ["JavaScript"],
+    "colors": {
+    	"over": "#F00",
+    	"under": "#0F0"
+    }
+}

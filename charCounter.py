@@ -1,46 +1,52 @@
 import sublime
 import sublime_plugin
 
-settings = sublime.load_settings('p5t.sublime-settings')
+settings = sublime.load_settings('TinyCodeCounter.sublime-settings')
+languages = settings.get('languages')
 
-class CharCounter(sublime_plugin.ViewEventListener):
+class charCounter(sublime_plugin.ViewEventListener):
 	def __init__(self, view):
 		self.view = view
 		self.phantom_set = sublime.PhantomSet(view)
 
-		self.marker = settings.get('marker')
+		self.markers = settings.get('markers')
 		self.char_limit = settings.get('char_limit')
 		self.remove_newlines = settings.get('remove_newlines')
-		self.over_color = settings.get('over_color')
-		self.under_color = settings.get('under_color')
+		self.colors = settings.get('colors')
 		self.label = settings.get('label')
-		self.languages = settings.get('languages')
-
+		
 		self.update()
 
 	@classmethod
 	def is_applicable(cls, settings):
 		syntax = settings.get('syntax')
-		return any(language in syntax for language in self.languages)
+		return any(language in syntax for language in languages)
 
 	def update(self):
 		phantoms = []
 		
-		marker_region = self.view.find(self.marker, 0)
-		
-		if marker_region.a > 0:
-			code_region = self.view.line(marker_region.a)
-		
-			msg_start = code_region.a
+		# find first marker
+		marker_start = -1
+		for marker in self.markers:
+			found_start = self.view.find(marker, 0).a
+			if found_start > 0:
+				if marker_start == -1:
+					marker_start = found_start
+				else:
+					marker_start = min(found_start, marker_start)
 
-			code = self.view.substr(sublime.Region(0,msg_start))
+		if marker_start > 0:
+			print(marker_start)
+			code_region = self.view.line(marker_start)
+
+			code = self.view.substr(sublime.Region(0,marker_start))
 			code = code.replace(' ', '').replace('\t', '')
 
 			if self.remove_newlines:
 				code = code.replace('\n', '')
 
 			# do not remove whitespace from comment
-			comment = self.view.substr(sublime.Region(msg_start, code_region.b)).strip()
+			comment = self.view.substr(sublime.Region(marker_start, code_region.b)).strip()
 			code += comment
 
 			count = len(code)
@@ -52,7 +58,7 @@ class CharCounter(sublime_plugin.ViewEventListener):
 			style = ('<style>a{text-decoration:none;color:'
 				+ str(color)
 				+ '}#offset{color:'
-				+ (self.over_color if count > limit else self.under_color) 
+				+ (self.colors['over'] if count > limit else self.colors['under'] ) 
 				+ '}</style>')
 			
 			text = ('<a href=copy>'
@@ -64,7 +70,7 @@ class CharCounter(sublime_plugin.ViewEventListener):
 				+ '</span>)</a>')
 
 			phantoms.append(sublime.Phantom(
-				sublime.Region(msg_start),
+				sublime.Region(marker_start),
 				style + text,
 				sublime.LAYOUT_BLOCK,
 				lambda href: self.set_clipboard(code)))
