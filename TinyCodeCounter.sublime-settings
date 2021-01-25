@@ -1,16 +1,33 @@
-{
+{   
+    // Only count characters if a marker is present.
     "markers": [
     	"#tinycode",
     	"#p5t",
     	"#p5js",
     	"#つぶやきProcessing"
     ],
-  	"char_limit": 280,
-    "remove_newlines": true,
-    "label": "Char count: ",
+
+    // Check for markers in files whose language contains these words.
     "languages": ["JavaScript"],
+
+    // Label for the character counter.
+    "label": "Char count: ",
+
+    // Character limit to display offset from.
+  	"char_limit": 280,
+
+    // Color of offset when over and under the character limit.
     "colors": {
     	"over": "#F00",
     	"under": "#0F0"
-    }
+    },
+
+    // Character displayed when the character limit is perfectly reached.
+    "zero_char": "🐟",
+
+    // Option to not remove newlines incase they are to be used as linebreaks.
+    "remove_newlines": true,
+
+    // Option to not include the line containing the marker, for uses other than Twitter.
+    "include_marker_line": true
 }
