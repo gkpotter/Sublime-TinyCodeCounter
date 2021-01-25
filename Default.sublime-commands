@@ -1,0 +1,10 @@
+[
+    {
+        "caption": "Preferences: TinyCodeCounter Settings",
+        "command": "edit_settings", "args":
+        {
+            "base_file": "${packages}/TinyCodeCounter/TinyCodeCounter.sublime-settings",
+            "default": "// TinyCodeCounter Settings - User\n{\n\t$0\n}\n"
+        }
+    },
+]
