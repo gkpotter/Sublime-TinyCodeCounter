@@ -9,6 +9,7 @@ Download and unpack, or git clone, the latest TinyCodeCounter release as `TinyCo
 cd /path/to/Sublime Text 3/Packages
 git clone https://github.com/gkpotter/Sublime-TinyCodeCounter.git TinyCodeCounter
 ```
+After installing manually, make sure to restart Sublime Text.
 
 ## Usage
 
