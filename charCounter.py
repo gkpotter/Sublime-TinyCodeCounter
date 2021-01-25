@@ -5,6 +5,7 @@ class charCounter(sublime_plugin.ViewEventListener):
 	SETTINGS_FILE = 'TinyCodeCounter.sublime-settings'
 	settings = sublime.load_settings(SETTINGS_FILE)
 	
+	
 	def __init__(self, view):
 		self.view = view
 		self.phantom_set = sublime.PhantomSet(view)
@@ -20,6 +21,7 @@ class charCounter(sublime_plugin.ViewEventListener):
 		self.just_copied = False
 
 		self.update()
+
 
 	@classmethod
 	def is_applicable(cls, view_settings):
@@ -99,6 +101,7 @@ class charCounter(sublime_plugin.ViewEventListener):
 
 	def on_modified(self):
 		self.update()
+
 
 	def on_load(self):
 		self.update()
