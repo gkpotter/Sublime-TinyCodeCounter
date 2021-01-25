@@ -8,7 +8,11 @@
     ],
 
     // Check for markers in files whose language contains these words.
-    "languages": ["JavaScript"],
+    "languages": [
+        "JavaScript",
+        "Java",
+        "Python"
+    ],
 
     // Label for the character counter.
     "label": "Char count: ",
