@@ -23,7 +23,7 @@
     },
 
     // Character displayed when the character limit is perfectly reached.
-    "zero_char": "🐟",
+    "zero_char": "😎",
 
     // Option to not remove newlines incase they are to be used as linebreaks.
     "remove_newlines": true,
