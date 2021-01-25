@@ -1,29 +1,35 @@
 import sublime
 import sublime_plugin
 
-settings = sublime.load_settings('TinyCodeCounter.sublime-settings')
-
 class charCounter(sublime_plugin.ViewEventListener):
-	languages = settings.get('languages')
+	SETTINGS_FILE = 'TinyCodeCounter.sublime-settings'
+	settings = sublime.load_settings(SETTINGS_FILE)
 	
 	def __init__(self, view):
 		self.view = view
 		self.phantom_set = sublime.PhantomSet(view)
-
-		self.markers = settings.get('markers')
-		self.char_limit = settings.get('char_limit')
-		self.remove_newlines = settings.get('remove_newlines')
-		self.colors = settings.get('colors')
-		self.label = settings.get('label')
-		self.zero_char = settings.get('zero_char')
-		self.include_marker_line = settings.get('include_marker_line')
+		
+		self.markers = self.settings.get('markers')
+		self.char_limit = self.settings.get('char_limit')
+		self.remove_newlines = self.settings.get('remove_newlines')
+		self.colors = self.settings.get('colors')
+		self.label = self.settings.get('label')
+		self.zero_char = self.settings.get('zero_char')
+		self.include_marker_line = self.settings.get('include_marker_line')
 
 		self.just_copied = False
 
+		self.update()
+
 	@classmethod
-	def is_applicable(cls, settings):
-		syntax = settings.get('syntax')
-		languages = cls.languages
+	def is_applicable(cls, view_settings):
+		syntax = view_settings.get('syntax')
+		languages = cls.settings.get('languages')
+		
+		if languages == None:
+			cls.settings = sublime.load_settings(cls.SETTINGS_FILE)
+			languages = cls.settings.get('languages')
+		
 		return any(language in syntax for language in languages)
 
 
@@ -41,7 +47,6 @@ class charCounter(sublime_plugin.ViewEventListener):
 					marker_start = min(found_start, marker_start)
 
 		if marker_start > 0:
-			print(marker_start)
 			code_region = self.view.line(marker_start)
 
 			code = self.view.substr(sublime.Region(0,marker_start))
@@ -95,6 +100,5 @@ class charCounter(sublime_plugin.ViewEventListener):
 	def on_modified(self):
 		self.update()
 
-
-	def on_load_async(self):
+	def on_load(self):
 		self.update()
