@@ -20,7 +20,7 @@ Clicking on the counter will copy all lines preceeding and including the line co
 
 For example given the following code, TinyCodeCounter displays after the marker at the end:
 
-[example](https://github.com/gkpotter/Sublime-TinyCodeCounter/blob/main/example.png)
+<img src="https://github.com/gkpotter/Sublime-TinyCodeCounter/blob/main/example.png" width="500">
 
 After clicking on the counter, the following is copied to the clipboard:
 
