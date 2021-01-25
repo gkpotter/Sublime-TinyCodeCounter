@@ -31,4 +31,4 @@ setup=_=>{F=[],p=0,s=sin,c=cos};draw=_=>{createCanvas(400,400);F.push([0,0,0]);F
 
 ## Settings
 
-All of the settings are documented in the [settings file](https://github.com/gkpotter/Sublime-TinyCodeCounter/blob/main/TinyCodeCounter.sublime-settings).
+All of the settings are documented in the [settings file](https://github.com/gkpotter/Sublime-TinyCodeCounter/blob/main/TinyCodeCounter.sublime-settings). You can override the defaults by navigating to `Preferences > Package Settings > TinyCodeCounter > Settings` in Sublime Text.
