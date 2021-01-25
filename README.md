@@ -13,7 +13,7 @@ git clone https://github.com/gkpotter/Sublime-TinyCodeCounter.git TinyCodeCounte
 ## Usage
 
 ### Character Counting
-TinyCodeCounter looks for markers (by default #tinycode and the other hashtags listed above) and counts characters in all lines preceeding and including the line containing the marker *not including whitespace.* The offset from the specified character limit (by default 280) is also displayed.
+TinyCodeCounter looks for markers (by default #tinycode and the other hashtags listed above) in files of specified languages (by default Javascript, Java, Python) and counts characters in all lines preceeding and including the line containing the marker *not including whitespace.* The offset from the specified character limit (by default 280) is also displayed.
 
 ### Removing Whitespace
 Clicking on the counter will copy all lines preceeding and including the line containing the marker *not including whitespace* to the clipboard.
