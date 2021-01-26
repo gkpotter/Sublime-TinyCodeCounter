@@ -10,7 +10,7 @@ remove whitespace when writing tiny code to be posted on Twitter!
 
 
 To get started just type #tinycode, #p5t, or #つぶやきProcessing after 
-your tiny code in a Javscript, Java or Python file.
+your tiny code in a Javscript, Java, or Python file.
 
 
 You can add/change the markers and languages that are detetected by 
