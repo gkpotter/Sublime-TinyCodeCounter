@@ -1,5 +1,5 @@
 # TinyCodeCounter
-TinyCodeCounter is [Sublime Text](https://www.sublimetext.com) plugin to show character count and easily remove whitespace when writing tiny code to be posted on Twitter under [#tinycode](https://twitter.com/hashtag/tinycode), [#p5t](https://twitter.com/hashtag/p5t), [#p5js](https://twitter.com/hashtag/p5js), [#つぶやきProcessing](https://twitter.com/hashtag/つぶやきProcessing), etc. 
+TinyCodeCounter is [Sublime Text](https://www.sublimetext.com) plugin to show character count and easily remove whitespace when writing tiny code to be posted on Twitter under [#tinycode](https://twitter.com/hashtag/tinycode), [#p5t](https://twitter.com/hashtag/p5t), [#つぶやきProcessing](https://twitter.com/hashtag/つぶやきProcessing), etc. 
 
 ## Installation
 
