@@ -1,9 +1,37 @@
 import sublime
 import sublime_plugin
+import sys
+
+
+package_name = 'TinyCodeCounter'
+
+
+def plugin_loaded():
+    from package_control import events
+
+    if events.install(package_name):
+        print('Installed %s!' % events.install(package_name))
+    elif events.post_upgrade(package_name):
+        print('Upgraded to %s!' % events.post_upgrade(package_name))
+
+
+def plugin_unloaded():
+    from package_control import events
+
+    if events.pre_upgrade(package_name):
+        print('Upgrading from %s!' % events.pre_upgrade(package_name))
+    elif events.remove(package_name):
+        print('Removing %s!' % events.remove(package_name))
+
+
+if sys.version_info < (3,):
+    plugin_loaded()
+    unload_handler = plugin_unloaded
+
 
 class charCounter(sublime_plugin.ViewEventListener):
-	SETTINGS_FILE = 'TinyCodeCounter.sublime-settings'
-	settings = sublime.load_settings(SETTINGS_FILE)
+	settings_file = 'TinyCodeCounter.sublime-settings'
+	settings = sublime.load_settings(settings_file)
 	
 	
 	def __init__(self, view):
@@ -29,7 +57,7 @@ class charCounter(sublime_plugin.ViewEventListener):
 		languages = cls.settings.get('languages')
 		
 		if languages == None:
-			cls.settings = sublime.load_settings(cls.SETTINGS_FILE)
+			cls.settings = sublime.load_settings(cls.settings_file)
 			languages = cls.settings.get('languages')
 		
 		return any(language in syntax for language in languages)
