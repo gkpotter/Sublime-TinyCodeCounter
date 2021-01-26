@@ -1,5 +1,5 @@
 # TinyCodeCounter
-TinyCodeCounter is [Sublime Text](https://www.sublimetext.com) plugin to show character count and easily remove whitespace when writing tiny code to be posted on Twitter under [#tinycode](https://twitter.com/hashtag/tinycode), [#p5t](https://twitter.com/hashtag/p5t), [#つぶやきProcessing](https://twitter.com/hashtag/つぶやきProcessing), etc. 
+TinyCodeCounter is [Sublime Text](https://www.sublimetext.com) plugin to show character count, show how close you are to 280 characters, and easily remove whitespace when writing tiny code to be posted on Twitter under [#tinycode](https://twitter.com/hashtag/tinycode), [#p5t](https://twitter.com/hashtag/p5t), [#つぶやきProcessing](https://twitter.com/hashtag/つぶやきProcessing), etc. 
 
 ## Installation
 
@@ -14,10 +14,10 @@ After installing manually, make sure to restart Sublime Text.
 ## Usage
 
 ### Character Counting
-TinyCodeCounter looks for markers (by default #tinycode and the other hashtags listed above) in files of specified languages (by default Javascript, Java, and Python) and counts characters in all lines preceeding and including the line containing the marker *not including whitespace.* The offset from the specified character limit (by default 280) is also displayed.
+TinyCodeCounter looks for markers (by default #tinycode, #p5t, and #つぶやきProcessing) in files of specified languages (by default Javascript, Java, and Python) and counts characters in all lines preceeding and including the line containing the marker *not including whitespace.* The difference between the number of characters *not including whitespace* and the specified character limit (by default 280) is also displayed.
 
 ### Removing Whitespace
-Clicking on the counter will copy all lines preceeding and including the line containing the marker *not including whitespace* to the clipboard.
+Clicking on the counter will copy all of the characters preceeding and including the line containing the marker *not including whitespace* to the clipboard.
 
 For example given the following code, TinyCodeCounter displays after the marker at the end:
 
