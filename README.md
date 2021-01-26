@@ -14,10 +14,10 @@ After installing manually, make sure to restart Sublime Text.
 ## Usage
 
 ### Character Counting
-TinyCodeCounter looks for markers (by default #tinycode and the other hashtags listed above) in files of specified languages (by default Javascript, Java, and Python) and counts characters in all lines preceeding and including the line containing the marker *not including whitespace.* The offset from the specified character limit (by default 280) is also displayed.
+TinyCodeCounter looks for markers (by default #tinycode, #p5t, and #つぶやきProcessing) in files of specified languages (by default Javascript, Java, and Python) and counts characters in all lines preceeding and including the line containing the marker *not including whitespace.* The difference between the number of characters *not including whitespace* and the specified character limit (by default 280) is also displayed.
 
 ### Removing Whitespace
-Clicking on the counter will copy all lines preceeding and including the line containing the marker *not including whitespace* to the clipboard.
+Clicking on the counter will copy all of the characters preceeding and including the line containing the marker *not including whitespace* to the clipboard.
 
 For example given the following code, TinyCodeCounter displays after the marker at the end:
 
