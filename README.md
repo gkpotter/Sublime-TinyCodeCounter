@@ -21,7 +21,7 @@ Clicking on the counter will copy all of the characters preceeding and including
 
 For example given the following code, TinyCodeCounter displays after the marker at the end:
 
-<img src="https://github.com/gkpotter/Sublime-TinyCodeCounter/blob/main/example.png" width="500">
+![example](./example.png)
 
 After clicking on the counter, the following is copied to the clipboard:
 
