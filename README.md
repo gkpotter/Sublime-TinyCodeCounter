@@ -7,7 +7,7 @@ TinyCodeCounter is [Sublime Text](https://www.sublimetext.com) plugin to show ch
 
 If you have [Package Control](https://packagecontrol.io/installation) installed, you can install TinyCodeCounter as follows:
 
-1. Open the command pallete: `cmd + shift + p` on Mac and `ctrl + shift + p` on Windows/Linux.
+1. Open the command palette: `cmd + shift + p` on Mac and `ctrl + shift + p` on Windows/Linux.
 2. Search `Package Control: Install Package` and press `enter`.
 3. Search `TinyCodeCounter` and press `enter`.
 
