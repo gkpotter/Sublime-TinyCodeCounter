@@ -35,7 +35,7 @@ if sys.version_info < (3,):
     unload_handler = plugin_unloaded
 
 
-class charCounter(sublime_plugin.ViewEventListener):
+class Counter(sublime_plugin.ViewEventListener):
 	def __init__(self, view):
 		self.view = view
 		self.phantom_set = sublime.PhantomSet(view)
