@@ -36,7 +36,7 @@ For example given the following code, TinyCodeCounter displays after the marker 
 After clicking on the counter, the following is copied to the clipboard:
 
 ```Javascript
-setup=_=>{F=[],p=0,s=sin,c=cos};draw=_=>{createCanvas(400,400);F.push([0,0,0]);F=F.slice(0,365);translate(200+40*c(p),200+40*s(p));rotate(p+=0.02);F.forEach(f=>text('🌸',f[1]=88*c(t=(f[0]+=0.1))-48*c(11*t/6),f[2]=88*s(t)-48*s(11*t/6)));text('💮',0,0)}//#tinycode #p5t
+F=[];p=0;draw=_=>{createCanvas(400,400);F.push([0,0,0]);F=F.slice(0,365);translate(200+40*cos(p),200+40*sin(p));rotate(p+=0.02);F.forEach(f=>text('🌸',f[1]=88*cos(t=(f[0]+=0.1))-48*cos(11*t/6),f[2]=88*sin(t)-48*sin(11*t/6)));text('💮',0,0)}//#tinycode #p5t #つぶやきProcessing
 ```
 
 ## Settings
