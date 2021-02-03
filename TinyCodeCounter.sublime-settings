@@ -14,7 +14,7 @@
     ],
 
     // Label for the character counter.
-    "label": "Char count: ",
+    "label": "Character count: ",
 
     // Character limit to display offset from.
   	"char_limit": 280,
