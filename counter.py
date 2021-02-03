@@ -93,21 +93,34 @@ class charCounter(sublime_plugin.ViewEventListener):
 
 			count = len(code)
 			limit = self.char_limit
-			diff = count - limit
+			offset = count - limit
 
 			color = self.view.style_for_scope('comment')['foreground']
 			offset_color = self.colors['over'] if count > limit else self.colors['under']
 
-			style = '<style> a {{ text-decoration: none; color: {} }} #offset {{ color: {} }} </style>'.format(
-				color, 
-				offset_color) 
+			style = """
+				<style> 
+					a {{ 
+						text-decoration: none; 
+						color: {color} 
+					}} 
 
-			text = '<a href>{} {} (<span id="offset">{}{}</span>){}</a>'.format(
-				self.label, 
-				count, 
-				'+' if diff > 0 else self.zero_char if diff == 0 else '-', 
-				abs(diff) if diff != 0 else '',
-				' Copied!' if self.just_copied else '')
+					#offset {{ 
+					color: {offset_color} 
+					}} 
+				</style>
+				""".format(color = color, offset_color = offset_color)
+
+			text = """
+				<a href=copy> 
+					{label} {count} (<span id="offset">{plusminus}{offset}</span>){copied_msg}
+				</a>
+				""".format(
+					label = self.label, 
+					count = count, 
+					plusminus = '+' if offset > 0 else self.zero_char if offset == 0 else '-', 
+					offset = abs(offset) if offset != 0 else '',
+					copied_msg = ' Copied!' if self.just_copied else '')
 
 			phantoms.append(sublime.Phantom(
 				sublime.Region(marker_start),
