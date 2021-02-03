@@ -4,24 +4,30 @@ import sys
 
 
 package_name = 'TinyCodeCounter'
+settings_file = 'TinyCodeCounter.sublime-settings'
+settings = None
 
 
 def plugin_loaded():
-    from package_control import events
+  from package_control import events
 
-    if events.install(package_name):
-        print('Installed %s!' % events.install(package_name))
-    elif events.post_upgrade(package_name):
-        print('Upgraded to %s!' % events.post_upgrade(package_name))
+  if events.install(package_name):
+      print('Installed %s!' % events.install(package_name))
+  elif events.post_upgrade(package_name):
+      print('Upgraded to %s!' % events.post_upgrade(package_name))
+
+  # load settings
+  global settings
+  settings = sublime.load_settings(settings_file)
 
 
 def plugin_unloaded():
-    from package_control import events
+  from package_control import events
 
-    if events.pre_upgrade(package_name):
-        print('Upgrading from %s!' % events.pre_upgrade(package_name))
-    elif events.remove(package_name):
-        print('Removing %s!' % events.remove(package_name))
+  if events.pre_upgrade(package_name):
+      print('Upgrading from %s!' % events.pre_upgrade(package_name))
+  elif events.remove(package_name):
+      print('Removing %s!' % events.remove(package_name))
 
 
 if sys.version_info < (3,):
@@ -30,21 +36,18 @@ if sys.version_info < (3,):
 
 
 class charCounter(sublime_plugin.ViewEventListener):
-	settings_file = 'TinyCodeCounter.sublime-settings'
-	settings = sublime.load_settings(settings_file)
-	
-	
 	def __init__(self, view):
 		self.view = view
 		self.phantom_set = sublime.PhantomSet(view)
 		
-		self.markers = self.settings.get('markers')
-		self.char_limit = self.settings.get('char_limit')
-		self.remove_newlines = self.settings.get('remove_newlines')
-		self.colors = self.settings.get('colors')
-		self.label = self.settings.get('label')
-		self.zero_char = self.settings.get('zero_char')
-		self.include_marker_line = self.settings.get('include_marker_line')
+		global settings
+		self.markers = settings.get('markers')
+		self.char_limit = settings.get('char_limit')
+		self.remove_newlines = settings.get('remove_newlines')
+		self.colors = settings.get('colors')
+		self.label = settings.get('label')
+		self.zero_char = settings.get('zero_char')
+		self.include_marker_line = settings.get('include_marker_line')
 
 		self.just_copied = False
 
@@ -54,11 +57,9 @@ class charCounter(sublime_plugin.ViewEventListener):
 	@classmethod
 	def is_applicable(cls, view_settings):
 		syntax = view_settings.get('syntax')
-		languages = cls.settings.get('languages')
 		
-		if languages == None:
-			cls.settings = sublime.load_settings(cls.settings_file)
-			languages = cls.settings.get('languages')
+		global settings
+		languages = settings.get('languages')
 		
 		return any(language in syntax for language in languages)
 
@@ -66,7 +67,7 @@ class charCounter(sublime_plugin.ViewEventListener):
 	def update(self):
 		phantoms = []
 		
-		# find first marker
+		# find the first marker
 		marker_start = -1
 		for marker in self.markers:
 			found_start = self.view.find(marker, 0).a
