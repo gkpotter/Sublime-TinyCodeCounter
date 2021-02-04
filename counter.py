@@ -3,31 +3,31 @@ import sublime_plugin
 import sys
 
 
-package_name = 'TinyCodeCounter'
-settings_file = 'TinyCodeCounter.sublime-settings'
-settings = None
+PACKAGE_NAME = 'TinyCodeCounter'
+SETTINGS_FILE = 'TinyCodeCounter.sublime-settings'
+SETTINGS = None
 
 
 def plugin_loaded():
   from package_control import events
 
-  if events.install(package_name):
-      print('Installed %s!' % events.install(package_name))
-  elif events.post_upgrade(package_name):
-      print('Upgraded to %s!' % events.post_upgrade(package_name))
+  if events.install(PACKAGE_NAME):
+      print('Installed %s!' % events.install(PACKAGE_NAME))
+  elif events.post_upgrade(PACKAGE_NAME):
+      print('Upgraded to %s!' % events.post_upgrade(PACKAGE_NAME))
 
   # load settings
-  global settings
-  settings = sublime.load_settings(settings_file)
+  global SETTINGS
+  SETTINGS = sublime.load_settings(SETTINGS_FILE)
 
 
 def plugin_unloaded():
   from package_control import events
 
-  if events.pre_upgrade(package_name):
-      print('Upgrading from %s!' % events.pre_upgrade(package_name))
-  elif events.remove(package_name):
-      print('Removing %s!' % events.remove(package_name))
+  if events.pre_upgrade(PACKAGE_NAME):
+      print('Upgrading from %s!' % events.pre_upgrade(PACKAGE_NAME))
+  elif events.remove(PACKAGE_NAME):
+      print('Removing %s!' % events.remove(PACKAGE_NAME))
 
 
 if sys.version_info < (3,):
@@ -40,14 +40,14 @@ class Counter(sublime_plugin.ViewEventListener):
 		self.view = view
 		self.phantom_set = sublime.PhantomSet(view)
 		
-		global settings
-		self.markers = settings.get('markers')
-		self.char_limit = settings.get('char_limit')
-		self.remove_newlines = settings.get('remove_newlines')
-		self.colors = settings.get('colors')
-		self.label = settings.get('label')
-		self.zero_char = settings.get('zero_char')
-		self.include_marker_line = settings.get('include_marker_line')
+		global SETTINGS
+		self.markers = SETTINGS.get('markers')
+		self.char_limit = SETTINGS.get('char_limit')
+		self.remove_newlines = SETTINGS.get('remove_newlines')
+		self.colors = SETTINGS.get('colors')
+		self.label = SETTINGS.get('label')
+		self.zero_char = SETTINGS.get('zero_char')
+		self.include_marker_line = SETTINGS.get('include_marker_line')
 
 		self.just_copied = False
 
@@ -58,8 +58,8 @@ class Counter(sublime_plugin.ViewEventListener):
 	def is_applicable(cls, view_settings):
 		syntax = view_settings.get('syntax')
 		
-		global settings
-		languages = settings.get('languages')
+		global SETTINGS
+		languages = SETTINGS.get('languages')
 		
 		return any(language in syntax for language in languages)
 
