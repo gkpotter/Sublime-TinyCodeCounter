@@ -9,30 +9,30 @@ SETTINGS = None
 
 
 def plugin_loaded():
-  from package_control import events
+	from package_control import events
 
-  if events.install(PACKAGE_NAME):
-      print('Installed %s!' % events.install(PACKAGE_NAME))
-  elif events.post_upgrade(PACKAGE_NAME):
-      print('Upgraded to %s!' % events.post_upgrade(PACKAGE_NAME))
+	if events.install(PACKAGE_NAME):
+		print('Installed %s!' % events.install(PACKAGE_NAME))
+	elif events.post_upgrade(PACKAGE_NAME):
+		print('Upgraded to %s!' % events.post_upgrade(PACKAGE_NAME))
 
-  # load settings
-  global SETTINGS
-  SETTINGS = sublime.load_settings(SETTINGS_FILE)
+	# load settings
+	global SETTINGS
+	SETTINGS = sublime.load_settings(SETTINGS_FILE)
 
 
 def plugin_unloaded():
-  from package_control import events
+	from package_control import events
 
-  if events.pre_upgrade(PACKAGE_NAME):
-      print('Upgrading from %s!' % events.pre_upgrade(PACKAGE_NAME))
-  elif events.remove(PACKAGE_NAME):
-      print('Removing %s!' % events.remove(PACKAGE_NAME))
+	if events.pre_upgrade(PACKAGE_NAME):
+		print('Upgrading from %s!' % events.pre_upgrade(PACKAGE_NAME))
+	elif events.remove(PACKAGE_NAME):
+		print('Removing %s!' % events.remove(PACKAGE_NAME))
 
 
 if sys.version_info < (3,):
-    plugin_loaded()
-    unload_handler = plugin_unloaded
+		plugin_loaded()
+		unload_handler = plugin_unloaded
 
 
 class Counter(sublime_plugin.ViewEventListener):
