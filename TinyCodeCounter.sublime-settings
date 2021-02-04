@@ -1,36 +1,36 @@
 {   
-    // Only count characters if a marker is present.
-    "markers": [
-    	"#tinycode",
-    	"#p5t",
-    	"#つぶやきProcessing"
-    ],
+	// Only count characters if a marker is present.
+	"markers": [
+		"#tinycode",
+		"#p5t",
+		"#つぶやきProcessing"
+	],
 
-    // Check for markers in files whose language contains these words.
-    "languages": [
-        "JavaScript",
-        "Java",
-        "Python"
-    ],
+	// Check for markers in files whose language contains these words.
+	"languages": [
+		"JavaScript",
+		"Java",
+		"Python"
+	],
 
-    // Label for the character counter.
-    "label": "Character count: ",
+	// Label for the character counter.
+	"label": "Character count: ",
 
-    // Character limit to display offset from.
-  	"char_limit": 280,
+	// Character limit to display offset from.
+	"char_limit": 280,
 
-    // Color of offset when over and under the character limit.
-    "colors": {
-    	"over": "#F00",
-    	"under": "#0F0"
-    },
+	// Color of offset when over and under the character limit.
+	"colors": {
+		"over": "#F00",
+		"under": "#0F0"
+	},
 
-    // Character displayed when the character limit is perfectly reached.
-    "zero_char": "😎",
+	// Character displayed when the character limit is perfectly reached.
+	"zero_char": "😎",
 
-    // Option to not remove newlines incase they are to be used as linebreaks.
-    "remove_newlines": true,
+	// Option to not remove newlines incase they are to be used as linebreaks.
+	"remove_newlines": true,
 
-    // Option to not include the line containing the marker, for uses other than Twitter.
-    "include_marker_line": true
+	// Option to not include the line containing the marker, for uses other than Twitter.
+	"include_marker_line": true
 }
