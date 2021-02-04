@@ -40,7 +40,6 @@ class Counter(sublime_plugin.ViewEventListener):
 		self.view = view
 		self.phantom_set = sublime.PhantomSet(view)
 		
-		global SETTINGS
 		self.markers = SETTINGS.get('markers')
 		self.char_limit = SETTINGS.get('char_limit')
 		self.remove_newlines = SETTINGS.get('remove_newlines')
@@ -57,8 +56,6 @@ class Counter(sublime_plugin.ViewEventListener):
 	@classmethod
 	def is_applicable(cls, view_settings):
 		syntax = view_settings.get('syntax')
-		
-		global SETTINGS
 		languages = SETTINGS.get('languages')
 		
 		return any(language in syntax for language in languages)
